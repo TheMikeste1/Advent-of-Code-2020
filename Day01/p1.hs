@@ -13,12 +13,12 @@ parseFile filename = do
    return $ map read (lines contents)
 
 findSolution :: (Eq a, Num a) => [a] -> Maybe (a, a)
-findSolution numbers = checkNumber 0 numbers
-  where checkNumber 0 (x:xs) = checkNumber x xs
-        checkNumber _ [] = Nothing
-        checkNumber n allXs@(x:xs) =
-          if 2020 - n `elem` allXs
-          then Just (n, 2020 - n)
-          else checkNumber x xs
+findSolution [] = Nothing
+findSolution (x:xs) =
+   if 2020 - x `elem` xs
+   then Just (x, 2020 - x)
+   else findSolution xs
+
+
 
 
