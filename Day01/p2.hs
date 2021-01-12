@@ -31,10 +31,16 @@ This also works with case statements:
    >     (x:_) -> show x
    > test xs
    > :sp xs
-
 -}
 findSolution :: (Eq a, Num a) => [a] -> Maybe (a, a, a)
-findSolution xs =
-   case [(a, b, c) | a <- xs, b <- xs, c <- xs, a + b + c == 2020] of
-     [] -> Nothing
-     (x:_) -> Just x
+findSolution [] = Nothing
+findSolution (x:ys) =
+   case validValues x ys of
+     Nothing -> findSolution ys
+     a -> a  -- This should be a Just something
+   where
+     validValues _ [] = Nothing
+     validValues x (y:zs) =
+      case [(x, y, z) | z <- zs, x + y + z == 2020] of
+        [] -> validValues x zs
+        (value:_) -> Just value
