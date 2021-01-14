@@ -1,3 +1,5 @@
+module P1 where
+
 main :: IO()
 main = do
   numbers <- parseFile "numbers.txt"
