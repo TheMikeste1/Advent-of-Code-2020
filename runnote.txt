@@ -1,0 +1,1 @@
+Use "stack runhaskell {filename} {libraries}" to quickly run code.
