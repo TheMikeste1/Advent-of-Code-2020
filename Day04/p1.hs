@@ -24,4 +24,4 @@ parsePassport entry =
     in Map.fromList tupleFields
 
 validPassport :: Map.Map String String -> Bool
-validPassport passport = foldr (\field acc -> Map.member field passport && acc) True ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
+validPassport passport = all (`Map.member` passport) ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
